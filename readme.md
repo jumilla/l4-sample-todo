@@ -3,7 +3,7 @@
 
 ### デモ
 
-[](http://laravel4.samples.jumilla.me/todos)
+[http://laravel4.samples.jumilla.me/todos](http://laravel4.samples.jumilla.me/todos)
 
 ### ライセンス
 
