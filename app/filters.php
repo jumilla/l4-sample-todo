@@ -80,8 +80,16 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
+	Log::debug('csrf:'.Input::get('_token'));
+
 	if (Session::token() !== Input::get('_token'))
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+
+// Todoのフィルタ定義
+// Route::filter('todos.exists', 'TodosController@existsFilter');
+

@@ -5,10 +5,11 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class Todo extends Model {
 
-    use SoftDeletingTrait;
-
 	const STATUS_INCOMPLETE = 1;		// 未完了状態
 	const STATUS_COMPLETED = 2;			// 完了状態
+
+ 	// ソフトデリート機能をクラスに追加する
+	use SoftDeletingTrait;
 
 	/**
 	 * このモデルで使用するデータベースのテーブル名。
@@ -27,11 +28,11 @@ class Todo extends Model {
 	/**
 	 * タイムスタンプ(作成日時・更新日時)カラムを有効にします。
 	 * デフォルトはtrueです。
-	 * created_at, updated_atを日付型(\Carbon\Cabon)として扱います。
+	 * trueの場合、created_at, updated_atを日付型(\Carbon\Cabon)として扱います。
 	 *
 	 * @var array
 	 */
-    public $timestamps = true;
+//	public $timestamps = true;
 
 	/**
 	 * 追加の日付カラム。
@@ -40,6 +41,6 @@ class Todo extends Model {
 	 *
 	 * @var array
 	 */
-    protected $dates = ['completed_at', 'deleted_at'];
+	protected $dates = ['completed_at', 'deleted_at'];
 
 }

@@ -3,6 +3,49 @@
 class TodosController extends BaseController {
 
 	/**
+	 * コンストラクタ
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// beforeフィルタをインストールする
+		$this->beforeFilter(
+			'@existsFilter',
+			['on' => ['post', 'put']]
+		);
+	}
+
+	/**
+	 * URLパラメータのidの存在をチェックする。
+	 *
+	 * @return void
+	 */
+	public function existsFilter()
+	{
+		Log::info(__METHOD__.' called.');
+
+		// URLにパラメータ'id'が存在したら
+		$id = Route::input('id');
+		if ($id) {
+			Log::debug("todo id(${id}) checking...");
+
+			// 指定のIDがtodosテーブルに存在しなかったら
+			if (! Todo::exists($id)) {
+				Log::debug('Nothing!');
+
+				// Webブラウザに404 Not Foundを返す
+				App::abort(404);
+			}
+
+			Log::debug('Exists!');
+		}
+		else {
+			Log::debug('url was not contained $id.');
+		}
+	}
+
+	/**
 	 * Todoリストページを表示する。
 	 *
 	 * @return void
@@ -50,7 +93,7 @@ class TodosController extends BaseController {
 			'title' => 'required|min:2',	// 'title'は必須で2文字以上。
 		];
 
-		// フォームの入力データをフィールド名を指定して取得する
+		// フォームの入力データを項目名を指定して取得する
 		$input = Input::only(['title']);
 
 		// バリデーターを生成する
@@ -80,11 +123,8 @@ class TodosController extends BaseController {
 	 */
 	public function update($id)
 	{
+		// Todoモデルを取得する
 		$todo = Todo::find($id);
-
-		if ($todo === null) {
-			App::abort(404);
-		}
 
 		// バリデーションルールの定義
 		// MEMO 文字列でルールを'|'で区切ることで複数指定できる。
@@ -138,12 +178,8 @@ class TodosController extends BaseController {
 	 */
 	public function ajaxUpdateTitle($id)
 	{
-		// Todoオブジェクトを取得する
+		// Todoモデルを取得する
 		$todo = Todo::find($id);
-
-		if ($todo === null) {
-			App::abort(404);
-		}
 
 		// バリデーションルールの定義
 		$rules = [
@@ -180,14 +216,8 @@ class TodosController extends BaseController {
 	 */
 	public function delete($id)
 	{
-		// Todoオブジェクトを取得する
+		// Todoモデルを取得する
 		$todo = Todo::find($id);
-
-		// 指定IDのデータが存在しなかったら
-		if ($todo === null) {
-			// 404を返す
-			App::abort(404);
-		}
 
 		// データを削除する（SQL発行）
 		$todo->delete();
@@ -198,14 +228,8 @@ class TodosController extends BaseController {
 
 	public function restore($id)
 	{
-		// Todoオブジェクトを取得する
+		// 削除されたTodoモデルを取得する
 		$todo = Todo::onlyTrashed()->find($id);
-
-		// 指定IDのデータが存在しなかったら
-		if ($todo === null) {
-			// 404を返す
-			App::abort(404);
-		}
 
 		// データを復元する（SQL発行）
 		$todo->restore();
