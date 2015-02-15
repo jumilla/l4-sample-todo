@@ -57,7 +57,7 @@ class TodosController extends BaseController {
 		// 1.1. 未完了リストを取得する
 		{
 			// クエリを作成する
-			$query = Todo::query()->where('status', '=', Todo::STATUS_INCOMPLETE)->orderBy('updated_at', 'desc');
+			$query = Todo::query()->select('*')->where('status', '=', Todo::STATUS_INCOMPLETE)->orderBy('updated_at', 'desc');
 
 			// クエリを実行し、結果を取得する
 			// MEMO 1件の場合はfirst()を使う
@@ -90,7 +90,7 @@ class TodosController extends BaseController {
 	{
 		// バリデーションルールの定義
 		$rules = [
-			'title' => 'required|min:2',	// 'title'は必須で2文字以上。
+			'title' => 'required|min:3|max:255',	// 'title'は必須で3文字以上255文字以内。
 		];
 
 		// フォームの入力データを項目名を指定して取得する
@@ -130,7 +130,7 @@ class TodosController extends BaseController {
 		// MEMO 文字列でルールを'|'で区切ることで複数指定できる。
 		// MEMO 配列でルールを複数指定することもできる。
 		$rules = [
-			'title' => 'required|min:2',
+			'title' => 'required|min:3|max:255',
 			'status' => ['required', 'numeric', 'min:1', 'max:2'],
 			'dummy' => '',	// ルールを指定しないとオプション扱いにできる
 		];
@@ -183,7 +183,7 @@ class TodosController extends BaseController {
 
 		// バリデーションルールの定義
 		$rules = [
-			'title' => 'required|min:2',
+			'title' => 'required|min:3|max:255',
 		];
 
 		// 入力データを取得する
