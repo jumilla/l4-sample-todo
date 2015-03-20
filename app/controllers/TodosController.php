@@ -159,7 +159,7 @@ class TodosController extends BaseController {
 			// statusとcompleted_atカラムを更新する
 			$todo->fill([
 				'status' => $input['status'],
-				'completed_at' => $input['status'] == Todo::STATUS_COMPLETED ? new DateTime : null,
+				'completed_at' => $input['status'] == Todo::STATUS_COMPLETED ? Carbon::now() : null,
 			]);
 		}
 

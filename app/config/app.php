@@ -191,6 +191,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 
+		'Carbon'          => 'Carbon\Carbon',
 		'InputModel'      => 'LaravelPlus\Extension\Specs\InputModel',
 		'FormModel'       => 'LaravelPlus\Extension\Specs\FormModel',
 
