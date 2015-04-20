@@ -15,7 +15,7 @@ Route::get('/', function() {
 	return Redirect::route('todos.index');
 });
 
-Route::when('*', 'csrf', ['post']);
+Route::when('*', 'csrf', ['post', 'put']);
 // MEMO URLのパターンでフィルタを指定することもできる。
 // MEMO filter.php内の'todos.exists'フィルタ定義を有効にすること。
 //Route::when('todos/*', 'todos.exists', ['post', 'put']);

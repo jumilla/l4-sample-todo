@@ -61,6 +61,7 @@
 			url: updateUrl,
 			data: {
 				title: title,
+				_token: '{{ Session::token() }}',
 			},
 			success: function () {
 				$('[name="title"]', browseBlock).text(title)
