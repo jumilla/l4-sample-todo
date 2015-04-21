@@ -24,7 +24,7 @@
 									<button type="submit" class="btn btn-link"><i class="glyphicon glyphicon-unchecked"></i></button>
 								{{ Form::close() }}
 								<span name="title">
-									{{ $todo->title }}
+									{{{ $todo->title }}}
 								</span>
 								<span class="pull-right">
 									<button type="button" name="edit" class="btn btn-link" data-id="todo-{{ $todo->id }}"><i class="glyphicon glyphicon-edit"></i></button>
