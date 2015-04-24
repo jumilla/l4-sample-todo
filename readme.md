@@ -7,7 +7,7 @@
 
 ### 著作権とライセンス
 
-&copy Fumio Furukawa
+&copy; Fumio Furukawa  
 [MITライセンス](http://opensource.org/licenses/MIT)
 
 ### ソースコードについて
