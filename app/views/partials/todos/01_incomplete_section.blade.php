@@ -19,7 +19,7 @@
 						<td id="todo-{{ $todo->id }}">
 							<span class="browse">
 								{{ Form::open(['url' => route('todos.update', $todo->id)]) }}
-									<input type="hidden" name="title" value="{{ $todo->title }}">
+									<input type="hidden" name="title" value="{{{ $todo->title }}}">
 									<input type="hidden" name="status" value="{{ Todo::STATUS_COMPLETED }}">
 									<button type="submit" class="btn btn-link"><i class="glyphicon glyphicon-unchecked"></i></button>
 								{{ Form::close() }}
@@ -36,7 +36,7 @@
 									<span class="input-group-btn">
 										<button type="button" name="cancel" class="btn btn-primary" data-id="todo-{{ $todo->id }}"><i class="glyphicon glyphicon-remove"></i></button>
 									</span>
-									<input type="text" name="title" value="{{ $todo->title }}" class="form-control">
+									<input type="text" name="title" value="{{{ $todo->title }}}" class="form-control">
 									<span class="input-group-btn">
 										<button type="button" name="update" class="btn btn-primary" data-id="todo-{{ $todo->id }}" data-url="{{ route('todos.update-title', $todo->id) }}">変更</button>
 									</span>

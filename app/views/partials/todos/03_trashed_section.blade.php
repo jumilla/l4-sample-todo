@@ -17,7 +17,7 @@
 	@foreach ($trashedTodos as $todo)
 					<tr>
 						<td id="todo-{{ $todo->id }}">
-							{{ $todo->title }}
+							{{{ $todo->title }}}
 						</td>
 						<td>
 @if ($todo->completed_at)

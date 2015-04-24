@@ -17,7 +17,7 @@
 					<tr>
 						<td id="todo-{{ $todo->id }}">
 							{{ Form::open(['url' => route('todos.update', $todo->id)]) }}
-								<input type="hidden" name="title" value="{{ $todo->title }}">
+								<input type="hidden" name="title" value="{{{ $todo->title }}}">
 								<input type="hidden" name="status" value="{{ Todo::STATUS_INCOMPLETE }}">
 								<button class="btn btn-link"><i class="glyphicon glyphicon-check"></i></button>
 								{{ $todo->title }}
