@@ -20,7 +20,7 @@
 								<input type="hidden" name="title" value="{{{ $todo->title }}}">
 								<input type="hidden" name="status" value="{{ Todo::STATUS_INCOMPLETE }}">
 								<button class="btn btn-link"><i class="glyphicon glyphicon-check"></i></button>
-								{{ $todo->title }}
+								{{{ $todo->title }}}
 							{{ Form::close() }}
 						</td>
 						<td>
